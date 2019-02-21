@@ -1,0 +1,116 @@
+
+Prezentarea implementarii:
+
+*Functii si locul unde se afla*
+	"citire.c"
+		->fraza_jucata
+		->det_random
+		->este_bun
+		->aranjare
+
+	"verificare_argumente.c"
+		->ver_argum
+		->impartire_pe_cuvinte
+		->initializare_joaca
+
+	"grafica.c"
+		->afisare_meniu
+		->cerc
+		->fa_spanzuratoare_meniu
+		->afisare_panou_control
+		->cuvinte_de_afisat
+		->afisare_stadiu
+		->spanzuratoare_joc
+		->initializare_culori
+		->afisare_setari
+		->afisare_culoare
+
+	"hangman.c"
+		->MAIN
+		->game
+		->descoperire_fraza
+		->meniu_joc
+		->functie_free
+		->verificare_litera
+		->caracter_random
+		->adaugare_fisier
+		->citire_fisier
+		->meniu_setari
+		->alege_culoare
+		->verificare_final
+
+*BONUSURI*
+	->Introducerea functiilor 'adaugare_fisier' si 'citire_fisier'
+	cu scopul de a salva starea curenta, pentru o eventuala repornire
+	a jocului.
+
+	->Un meniu de setari in care jucatorul isi poate alege culorile
+	fundalului, textului si spanzuratorii, acestea ramanand si dupa o
+	alta deschidere a jocului (culorile sunt cele predefinite in
+	biblioteca ncurses).
+	
+	->Restrictia meniului de culori este ca fundalul nu poate avea
+	aceeasi culoare ca textul sau spanzuratoare (textul si spanzuratoarea
+	pot avea aceeasi culoare).
+
+
+*info.h*
+	-> Am folosit o structura <propozitie> care contine toate informatiile
+	despre jocul curent. Salvarea cuvintelor s-a facut intr-un (char**),
+	eliminind ' '.
+	
+	->(int **)ascunse are rolul de a retine pentru fiecare caracter
+	al cuvintelor daca este de afisat sau nu.
+
+	->Vectorul de litere are scopul de a memora daca un caracter a mai fost
+	introdus in timpul jocului. Modul de salvare in vector este:
+		*Intre pozitiile 0 si 9 mentine cifrele
+		*Intre pozitiile 10 si 35 mentine literele
+		*Dupa, contine cele 6 caractere printabile specificate in enunt,
+			, ; { } \ si '
+
+	->Vectorul de caractere	memoreaza codurile ASCII ale celor 6 caractere
+	enumerate mai sus. Astfel, in vectorul de litere se memoreaza
+	<propozitie>.litere[k + 36], unde k apartine [0;6).
+
+	->Prin structura 'culori' se salveaza culorile pentru fundal, text
+	si spanzuratoare.
+
+*grafica.c*
+	->Acest fisier .c are rolul de a mentine toate instructiunile care
+	folosesc biblioteca grafica ncurses, precum afisarea meniului principal
+	sau a spanzuratorii.
+	
+	->In meniul principal a fost realizata o spanzuratoare in care, spre deosebire
+	de cea din timpul jocului, s-a tinut cont de marimea ferestrei de joc. Astfel,
+	spanzuratoare din meniu se va incadra pentru a fi afisata toata. In acelasi timp,
+	celeilate, intr-o fereastra mai mica, ii poate lipse o parte din componente.
+
+*citire.c*
+	->Contine instructiunile referitoare la citirea din fisierele date ca argument,
+	verificarea daca sunt valide pentru a le putea juca, eliminarea caracterelor
+	care nu respecta enuntul si determinarea uneia aleatoare pentru a se juca.	
+
+*verificare_argument.c*
+	->Verifica existenta fisierelor date ca argument.
+
+	->Realizeaza impartirea frazei in cuvinte (din (char*) in (char**) )
+	folosind strtok.
+	
+	->Introduce matricea booleana, (int **)ascunse din <propozitie>
+
+*hangman.c*
+	->Contine toate instructiunile referitoare la sceletul aplicatiei, precum
+	algoritmii de parcurgere prin meniuri sau de introducere a unui caracter
+	in timpul jocului.
+
+	->Jocul poate fi inceput prin "New Game" sau "Resume Game", informatia
+	salvata, in urma apasarii tastei Q, fiind salvata in fisierul 'savegame'.
+	
+	->La selectarea "Resume Game" se verifica existanta fisierului "savegame".
+	In caz afirmativ, se citeste ultimul stadiu ramas, altfel nu este accesibil butonul.
+	
+*input posibil in timpul jocului*
+	-> literele de la 'a' la 'z'
+	-> toate cifrele
+	-> caracterele speciale , ; { } \ si '

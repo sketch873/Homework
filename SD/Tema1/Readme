@@ -1,0 +1,138 @@
+Tema I SD
+Martin Andrei-Costin 312CC
+
+Functii folosite (antet):
+	(1)void citire(char *input, char *output)
+	(2)Nod *sortareTimp(Nod *coada)
+	(3)Nod *schimbare(Nod *coada, proces *curent)
+	(4)Nod *sortarePrioritate(Nod *coada, int niveluri)
+	(5)proces cautare(Nod **coada, int niveluri, proces actual)
+	(6)proces adaugareCurent(Nod **coada)
+	(7)Nod *adaugareCoada(Nod *coada, proces curent)
+	
+	->proces tick(proces curent, Nod **coada, int *timpScurs)
+	->void show(proces curent, FILE *out)
+	->Nod *add(Nod *coada, char *val)
+	->Nod *mAdd(Nod *coada, char *val)
+	->Nod *event(Nod *coada, Nod **waiting, char *nume)
+	->Nod *wait(Nod *waiting, proces *curent)
+
+	(*)Nod *eliminareCoada(Nod *coada)
+	(*)Nod *eliminareInceput(Nod *coada)
+	(*)Nod *initializareNod(proces asta)
+	(*)proces parsare(char *val)
+
+	->void FCFS(FILE *in, FILE *out)
+	->void SJF(FILE *in, FILE *out)
+	->void RR(FILE *in, FILE *out, int timpTotal)
+	->void PP(FILE *in, FILE *out, int timpTotal, int niveluri)
+	->void BONUS(FILE *in, FILE *out, int timpTotal, int niveluri)
+
+(1)
+	* Sunt deschise fisierele de input si output si se citeste numarul taskului
+care trebuie implementat.
+	* In functie de task se mai citesc valorile x(timpTotal) si y(niveluri).
+	* Pentru fiecare task s-a implementat o functie specifica, avand parametrii
+fisierele de input si output alaturi de timpTotal si niveluri(in functie de task).
+
+(2)-SPECIFICA SJF
+	* Se realizeaza sortarea cozii ready dupa timpul de executie al proceselor.
+	* Fiecare element al cozii este comparat cu urmatorii dupa el, daca un urmas
+are timpul de executie mai mic se interschimba.
+
+(3)-SPECIFICA RR
+	* In situatia in care procesul aflat in RUNNING isi atinge cuanta este apelata
+functia.
+	* Aceasta adauga procesul la finalul cozii si returneaza primul proces din coada.
+
+(4)-SPECIFICA PP SI BONUS
+	* Realizeaza o noua coada cu elementele vechii cozi sortate dupa nivelul
+de prioritate.
+	* Incepe cu nivelul maxim pe prioritate(y) si adauga toate procesele cu acest
+nivel la noua coada. Nivelul maxim de prioritate scade cu unu si operatia se repeta,
+pana cand prioritatea cautata este zero.
+	* Vechea coada este eliminata si noua coada returnata.
+
+(5)-SPECIFICA PP SI BONUS
+	* Dupa operatia tick(descrisa mai jos), in cazul in care se termina un proces,
+este adaugat primul din coada.
+	* Functia are rolul de a intoarce procesul cu cea mai mare prioritate, verificand
+ca cel deja existent sa aiba cel putin aceeasi prioritate cu cea mai mare din coada READY.
+
+(6)-SPECIFICA PP SI BONUS
+	* In situatia in care un proces si-a atins cuanta, primul proces din coada READY
+ii ia locul.
+
+(7)-SPECIFICA PP SI BONUS
+	* In cazul in care un proces si-a atins cuanta, acesta este adaugat la sfarsitul
+cozii READY.
+
+(*)
+	* Cele patru functii sunt auxiliare, avand rolul de a elimina memoria, a parsa
+o linie pentru functia add in cei trei parametrii si a initializa un nod pentru READY
+si WAITING.
+
+
+
+	FUNCTIILE DE BAZA
+
+
+
+TICK
+	* Verifica timpul ramas pentru fiecare proces si il scade (crescand cuanta)
+		
+		!!!OBS. Pentru primele doua taskuri, parametrul timpScurs este trimis
+		si intitulat gunoi. Acesta nu este luat in considerare.
+
+	* In situatia in care procesul curent isi termina executia, timpul este zero,
+primul element al cozii este adaugat ca proces curent.
+
+ADD
+	* La sfarsitul cozii READY este adaugat un nou proces.
+
+SHOW
+	* Afiseaza procesul curent, conform enuntului.
+	* Procesul este considerat RUNNING daca are timpul diferit de zero.
+
+MULTIPLE ADD
+	* Pana la sfarsitul liniei citite se face parsare, ca multiplu de trei,
+conform datelori citite pentru fiecare proces.
+	* Toate procesele sunt introduse la sfarsitul cozii READY.
+
+WAIT
+	* Procesul aflat in RUNNING este introdus in coada WAITING iar in variabila
+curent primeste timpul egal cu zero (echivalentul inexistentei lui).
+
+EVENT
+	* Este parcursa coada WAITING pana la identificarea procesului intors
+in READY.
+	* Sunt tratate cazurile in care coada READY este goala sau nu, prin
+intermediul auxiliarului 'aux'.
+
+
+
+	IMPLEMENTAREA TASKURILOR
+
+
+FCFS
+	* Cuprinde functiile de baza. Alte functii nu isi au rostul deoarece
+procesele vin in RUNNING in ordinea citirii lor.
+
+SJF
+	* Functia este asemanatoare cu cea FCFS, cu exceptia faptului ca inainte
+de tick trebuie realizata o sortare dupa timp (in eventualitatea in care procesul
+curent isi termina executia.
+
+RR
+	* Este functia FCFS cu o conditie finala (daca isi atinge cuanta se intoarce
+in READY si primul proces din READY se duce in RUNNING).
+
+PP
+	* La fiecare pas are loc o sortare dupa prioritate (descrisa mai sus) pentru
+ca procesul cu cea mai mare prioritate sa intre in RUNNING atunci cand cel curent
+este trimis in WAITING, isi termina executia sau isi atinge cuanta.
+
+BONUS
+	* Fiecare proces are variabilele scadereP si adunareP, initializate la fiecare
+adaugare de proces, dar omise pana la acest task. Scopul lor e sa retina cat mai dureaza
+pana la modificarea prioritatii lor.

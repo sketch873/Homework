@@ -1,0 +1,40 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> a
+			<IntNode> 2
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> b
+				<IntNode> 3
+			<IfNode> if
+				<BracketNode> ()
+					<NotNode> !
+						<BracketNode> ()
+							<GreaterNode> >
+								<VariableNode> a
+								<VariableNode> b
+				<BlockNode> {}
+					<IfNode> if
+						<BracketNode> ()
+							<BoolNode> true
+						<BlockNode> {}
+							<IfNode> if
+								<BracketNode> ()
+									<BoolNode> false
+								<BlockNode> {}
+									<AssignmentNode> =
+										<VariableNode> t
+										<IntNode> 0
+								<BlockNode> {}
+									<AssignmentNode> =
+										<VariableNode> t
+										<IntNode> 1
+						<BlockNode> {}
+							<AssignmentNode> =
+								<VariableNode> t
+								<IntNode> 0
+				<BlockNode> {}
+					<AssignmentNode> =
+						<VariableNode> t
+						<IntNode> 0

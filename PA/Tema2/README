@@ -1,0 +1,79 @@
+Andrei - Costin Martin
+322CC
+
+  minlexbfs:
+    complexitate temporala :
+      - sortare O(N*N*log(N)) (sunt N liste cu maxim N elemente)
+      - bfs O(N + M), unde M < N*N
+      => O(N*N*log(N))
+
+    complexitate spatiala :
+      - vectorul solutie O(N) (o lista cu N elemente)
+      - lista de adiacenta O(N*N) (sunt N liste cu maxim N elemente)
+      => O(N*N)
+
+    implementare :
+      - se cere parcurgerea bfs cea mai mica lexicografic asa ca,
+      trebuie facuta din nodul 1 pentru a avea cea mai mica valoare
+      - pentru a asigura valoarea cea mai mica, fiecare lista de adiacenta
+      trebuie sortata pentru a asigura faptul ca mereu primul nod nevizitat
+      este cel mai mic posibil
+      - stiind ca graful este conex este de ajuns o singura parcurgere
+      (cea din nodul 1)
+
+  disjcnt:
+    complexitate temporata :
+      - dfs si explorare O(N + M), unde M < N*N
+      - prepare_dfs si punti O(N)
+      => O(N^3), unde M = N^2
+
+    complexitate temporala :
+      - punti : O(4*N)
+      - prepare_dfs : O(N)
+      - main : O(N*N) pentru listele de adiacenta
+      => O(N^2)
+
+    implementare :
+      - se stie ca graful este conext deci se poate ajunge de la un nod
+      la oricare altul
+      - cum se intereseaza sa existe minim doua drumuri diferite
+      intre doua puncte, atunci cautam un ciclu care sa cuprinda acele
+      doua puncte
+      - inainte de a determina ciclurile trebuie spart graful initial,
+      eliminand puntile
+      - eliminarea puntilor asigura ca subgrafurile contin cicluri si incepe
+      parcurgerea dfs pentru fiecare componenta, numarand si numarul de noduri
+      din ciclu pentru a face combinarea lor [ C(n, 2) = n(n-1)/2 ]
+
+  rtd:
+    complexitate temporala :
+      - hash O(1)
+      - move[1,2,3,4] O(1)
+      - bfs (N*M + 4*N*M), unde N*M reprezinta toate nodurile
+                          unde 4*N*M toate muchiile
+      - main O(N * M)
+      => O(N * M)
+
+    implementare :
+      - ideea de baza era o matrice de distante initializata cu INF sau -1
+      si parcurgerea bfs, incepand cu nodul de start
+      - pasul de vizitare nu depindea de vizited, ci de conditia de a gasi
+      o stare mai buna fata de cea precedenta pe o casuta
+      OBS : acest lucru a condus la un rezultat eronat, am primit un hint,
+      care m-a condus la realizarea algoritmului dar cu salvare intr-un
+      alt spatiu si anume cel al configuratiei zarului -> de aceea sunt 24 de
+      matrice N * M, cate una pentru toate configuratiile posibile
+      - rezultatul final trebuie sa fie minimul dintre toate pozitiile de stop
+      din toate spatiile
+
+  revedges:
+    complexitate temporala :
+      - floyd - O(N^3)
+      - main - O(N^2)
+      => O(N^3)
+
+    complexitate spatiala :
+      - O(N^2) - pentru matricea de adiacenta
+
+    implementare :
+    

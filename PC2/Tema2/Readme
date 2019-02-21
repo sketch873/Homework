@@ -1,0 +1,39 @@
+Andrei - Costin Martin
+322CC
+
+	Structura folosita:
+		- structura cont care retine toate datele unei entitati
+		  alaturi de informatii aditionale : incercari, sockfd
+	Explicatie:
+		- <sockfd> realizeaza maparea dintre o entitate (un cont) si
+		  socketul care a cerut autentificarea
+		- <incercari> retine pentru fiecare socket
+		  (cu o marja de eroare <100>) daca a fost incercata logarea
+		  cu insucces de trei ori consecutiv
+
+	<client.c>
+		- daca a venit mesaj de la stdin atunci verifica posibilitatile
+		  (login, logout, transfer, listsold, unlock) si trimite pe
+		  socketul specific instructiunii mesajul primit
+
+	<comenzi.c>
+		- imprementeaza functia care primeste mesajul si in functie
+		  de tipul ei trimite pentru functia specializata comenzii
+		  <take_message>
+		- <take_message> intoarce un string care contine mesajul pe
+		  care serverul il intoarce catre client
+		- functiile specializate pentru diferitele comenzi intorc
+		  1 pentru succes sau codurile de eroare posibile in caz
+		  de insucces
+
+	<server.c>
+		- caz particular => singurul mesaj posibil de la stdin <quit>
+		  care trimite mesajul 'quit' catre clienti si inchide serverul
+		- verifica daca mesajul este primit pe unul dintre socketii tcp
+		  sau udp si trimite mesajul mai departe catre <take_message>
+		  pentru a fi interpretat
+
+	!!! OBSERVATII !!!
+		- Comenzile de login, logout si unlock sunt tratate in client dar adaugate
+			si in server.
+		- Pentru cazul in care se trimite o comanda invalida se intoarce eroarea -6

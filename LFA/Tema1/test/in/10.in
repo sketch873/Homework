@@ -1,0 +1,9 @@
+int i, j;
+i = 0;
+j = 12;
+while (!(i > 7)) {
+	if (i > 8) {
+		j = j + k;
+	} else {}
+	i = i + 1;
+}

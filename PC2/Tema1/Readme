@@ -1,0 +1,39 @@
+Martin Andrei - Costin
+322CC
+
+	Functii create:
+		-> make_<S,F,D,Z,B,YY,N> specifice tipului de pachet creat.
+		-> send_my_message care trimite din sender orice tip de pachet
+
+	Ideea implementarii:
+		-> Inchiderea sender/receiver se ia in considerare la trimiterea
+		unui pachet si primirea ack (End of Text) sau in cazul pierderii
+		conexiunii (retrimitere a pachetelor fara un raspuns corect sau gresit).
+		-> Pachetele, cunoscand lungimile, au fost realizate element cu element,
+		in structura primita in scheletul de cod.
+		-> Exceptie fac pachetele D si F unde campul data este variabil, deci
+		depinde si de lungimea mesajelor din DATA.
+
+	!!! Campurile folosite uzual sunt payload[2] - seq si payload[3] - type.
+
+		SENDER: (trimiterea se face doar cu send_my_message)
+			-> Trimiterea pachetului de tip S.
+			-> Pentru fiecare fisier primit ca argument se trimite F.
+			-> Pana la epuizarea datelor din fisier se trimite D.
+			-> Cand s-a ajuns la EOF este transmis pachetul Z.
+			-> La terminarea fisierelor se trimite B.
+
+		RECEIVER:
+			-> Se initializeaza variabile pentru crearea pachetelor ACK si NAK
+			(timeout, mark, seq)
+			-> La primirea unui pachet S corect variabilele de mai sus, alaturi
+			de maxl, sunt sincronizate cu sender-ul.
+			-> Cat timp nu se primeste un pachet B valid (checksum si numar
+			de secventa corecte) are loc primirea de pachete:
+				-> Daca este F deschide un fisier cu numele primit.
+				-> Daca este D scrie in fisierul deschis.
+				-> Daca este Z inchide fisierul.
+			-> In caz de pachet cu checksum sau numar de secventa gresit se trimite
+			NAK, altfel ACK, apelandu-se make_N sau make_YY.
+			-> In caz de timeout se trimite ultimul pachet primit (doar send_message,
+			fara make_N sau make_YY).

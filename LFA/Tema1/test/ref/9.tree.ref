@@ -1,0 +1,64 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 0
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> j
+				<IntNode> 12
+			<WhileNode> while
+				<BracketNode> ()
+					<AndNode> &&
+						<NotNode> !
+							<BracketNode> ()
+								<GreaterNode> >
+									<VariableNode> i
+									<IntNode> 4
+						<NotNode> !
+							<BracketNode> ()
+								<GreaterNode> >
+									<VariableNode> i
+									<VariableNode> i
+				<BlockNode> {}
+					<SequenceNode>
+						<WhileNode> while
+							<BracketNode> ()
+								<NotNode> !
+									<BracketNode> ()
+										<GreaterNode> >
+											<IntNode> 5
+											<VariableNode> j
+							<BlockNode> {}
+								<IfNode> if
+									<BracketNode> ()
+										<AndNode> &&
+											<BoolNode> false
+											<BoolNode> true
+									<BlockNode> {}
+										<WhileNode> while
+											<BracketNode> ()
+												<NotNode> !
+													<BracketNode> ()
+														<GreaterNode> >
+															<VariableNode> i
+															<VariableNode> j
+											<BlockNode> {}
+												<AssignmentNode> =
+													<VariableNode> j
+													<PlusNode> +
+														<VariableNode> j
+														<IntNode> 1
+									<BlockNode> {}
+										<SequenceNode>
+											<AssignmentNode> =
+												<VariableNode> i
+												<IntNode> 4
+											<AssignmentNode> =
+												<VariableNode> j
+												<IntNode> 3
+						<AssignmentNode> =
+							<VariableNode> i
+							<PlusNode> +
+								<VariableNode> i
+								<IntNode> 1

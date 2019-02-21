@@ -1,0 +1,15 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> a
+			<IntNode> 8
+		<IfNode> if
+			<BracketNode> ()
+				<GreaterNode> >
+					<VariableNode> a
+					<IntNode> 6
+			<BlockNode> {}
+				<AssignmentNode> =
+					<VariableNode> a
+					<IntNode> 9
+			<BlockNode> {}

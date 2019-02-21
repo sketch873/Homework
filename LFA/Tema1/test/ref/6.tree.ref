@@ -1,0 +1,40 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> x
+			<IntNode> 4
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> y
+				<IntNode> 2
+			<SequenceNode>
+				<AssignmentNode> =
+					<VariableNode> k
+					<IntNode> 0
+				<IfNode> if
+					<BracketNode> ()
+						<AndNode> &&
+							<AndNode> &&
+								<GreaterNode> >
+									<VariableNode> x
+									<VariableNode> y
+								<GreaterNode> >
+									<PlusNode> +
+										<VariableNode> y
+										<IntNode> 3
+									<VariableNode> x
+							<NotNode> !
+								<BracketNode> ()
+									<GreaterNode> >
+										<VariableNode> k
+										<PlusNode> +
+											<IntNode> 2
+											<IntNode> 1
+					<BlockNode> {}
+						<AssignmentNode> =
+							<VariableNode> k
+							<IntNode> 1
+					<BlockNode> {}
+						<AssignmentNode> =
+							<VariableNode> k
+							<IntNode> 0

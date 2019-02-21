@@ -1,0 +1,33 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 0
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> j
+				<DivNode> /
+					<VariableNode> i
+					<IntNode> 12
+			<SequenceNode>
+				<AssignmentNode> =
+					<VariableNode> k
+					<DivNode> /
+						<BracketNode> ()
+							<PlusNode> +
+								<IntNode> 13
+								<VariableNode> j
+						<BracketNode> ()
+							<PlusNode> +
+								<PlusNode> +
+									<VariableNode> j
+									<VariableNode> j
+								<VariableNode> j
+				<AssignmentNode> =
+					<VariableNode> j
+					<DivNode> /
+						<BracketNode> ()
+							<PlusNode> +
+								<VariableNode> i
+								<VariableNode> j
+						<VariableNode> k

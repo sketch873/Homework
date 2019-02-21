@@ -1,0 +1,40 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> a
+			<IntNode> 1234567
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> b
+				<IntNode> 0
+			<WhileNode> while
+				<BracketNode> ()
+					<GreaterNode> >
+						<VariableNode> a
+						<IntNode> 0
+				<BlockNode> {}
+					<SequenceNode>
+						<IfNode> if
+							<BracketNode> ()
+								<NotNode> !
+									<BracketNode> ()
+										<GreaterNode> >
+											<VariableNode> a
+											<IntNode> 100
+							<BlockNode> {}
+								<AssignmentNode> =
+									<VariableNode> b
+									<PlusNode> +
+										<VariableNode> b
+										<IntNode> 1
+							<BlockNode> {}
+								<AssignmentNode> =
+									<VariableNode> b
+									<PlusNode> +
+										<VariableNode> b
+										<IntNode> 2
+						<AssignmentNode> =
+							<VariableNode> a
+							<DivNode> /
+								<VariableNode> a
+								<IntNode> 10

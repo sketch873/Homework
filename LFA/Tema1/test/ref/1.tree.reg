@@ -1,0 +1,20 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> a
+			<IntNode> 3
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> b
+				<IntNode> 10
+			<SequenceNode>
+				<AssignmentNode> =
+					<VariableNode> c
+					<VariableNode> a
+				<SequenceNode>
+					<AssignmentNode> =
+						<VariableNode> a
+						<VariableNode> b
+					<AssignmentNode> =
+						<VariableNode> b
+						<VariableNode> c

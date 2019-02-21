@@ -1,0 +1,9 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 0
+		<WhileNode> while
+			<BracketNode> ()
+				<BoolNode> false
+			<BlockNode> {}

@@ -1,0 +1,13 @@
+Martin Andrei-Costin
+336CA
+
+    Buffere auxiliare :
+    -> aux_up[R|G|B] - pixelii de la procesul superior
+    -> aux_bot[R|G|B] - pixelii de la procesul inferior
+    -> buf[R|G|B] - linia de pixeli de dupa aplicarea filtrului
+
+    Functiile sharpen, smooth, blur, mean si emboss:
+    -> pentru fiecare linie arondata procesului,
+        iau pixel cu pixel si calculeaza filtru pe baza pixelilor
+        din imagine sau aux_up[R|G|B] sau aux_bot[R|G|B];
+    -> rezultatul este pus la final in buf[R|G|B]

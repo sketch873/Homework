@@ -1,0 +1,96 @@
+# Darius-Florentin Neatu <neatudarius@gmail.com>
+# Copyright 2018
+
+### Rulare
+	- local:
+		./check.sh
+
+	- vmchecker
+		./check.sh ONLINE_JUDGE
+
+## Ierahie
+ ── check_private.zip          // arhiva pentru studenti
+├── check_public.zip           // arhiva pentru vmchecker
+├── check.sh                   // script comun - comportament diferit in functie de ONLINE_JUDGE
+├── dummy-cpp.zip              // sample: rezolvare in cpp
+├── dummy-java.zip			   // sample: rezolvare in java	
+├── Makefile                   // Makefile obligatoriu facut de student (vezi format)
+├── Makefile.PA                // Makefile intern, folosit de checker               
+├── pack.sh                    // script care exporta zip public/private cu checkerul
+├── private_tests              
+│   ├── adn
+│   │   ├── input/
+│   │   ├── out/
+│   │   └── ref/
+	 ....
+├── public_tests
+│   ├── adn/
+│   │   ├── input/
+│   │   ├── out/
+│   │   └── ref/
+│    ...
+├── README                     // README facut de student
+├── README.checker             // README pentru student despre cum sa foloseasca checkerul
+├── README.vmchecker           // README pentru echipa de PA
+├── src                        // un loc posibil in care se stocheaza o tema (poate sa fie si .)
+├── upload.sh                  // creeaza automat check_private.zip si il uploadeaza pe vmchecker
+└── _utils                     
+    ├── coding_style
+    ├── timeout                // aici se specifica timpul pentru fiecare problema
+    └── verif.cpp
+
+
+### _utils
+## _utils/timeout
+	In c.timeout$ID / java.timeout$ID se gaseste timpul de executie pentru
+fiecare problema (ID = 1, 2, 3, 4).
+
+
+## _utils/coding_style
+	Contine utilitarele folosite pentru verificarea automata a coding style.
+Din cauza versiunii de Java de pe vmchecker, verificarea de coding style
+va fi facuta doar local (exita o variabla de mediue ONLINE_JUDGE care este
+setata pe vmechecker).
+	In functie de aceasta variabila, se va verifica coding style (local)
+sau doar se va afisa un mesaj (online).
+
+## private_tests / public_tests
+	In fiecare folder se va afla cate un director pentru fiecare task.
+	
+### Exemplu 
+	Pentru problema adn vom avea:
+		- private_tests/adn/
+		- public_test/adn/
+	In fiecare vom avea "input/" (toate fisierele de input), "out/" (gol), 
+"ref/" (toate fisierele de referinta). 
+	Atentie! Indexarea incepe de la 0.
+	Numarul testelor se specifica in check.sh.
+
+	# Task 2
+	test_adn() {
+		src_names=(adn.c adn.cpp Adn.java)              	// am fixat 3 nume posibile pentru surse
+		tests=(0 1 2 3 4 5 6 7 8 9)                     	// mentionez toti indicatorii testelor de intrare
+		points=(3.0 3.0 3.0 3.0 3.0 4.0 4.0 4.0 4.0 4.0)	// pentru fiecare test mentionez punctajul (flexibil)
+		pmax=35.0                                           // punctajul maxim al taskului
+ 
+		run_problem adn 2                                   // rulez problema indentificata prin numele "adn"  
+															// (folosit in numele fisierelor de intrare)
+															// si prin ID_ul 2 (folosit la altele, precum fisierul cu timpul de
+															// executie)
+	}
+
+
+### comenzi
+	* rulare checker
+		./check.sh                // automat ruleaza testele public (pe local) sau private (pe vmchecker)
+		./check.sh public_tests
+		./check.sh private_tests
+
+	* obtinere arhiva publica
+		./pack.sh public
+
+	* obtinere arhiva private
+		./pack.sh private
+		
+	* obtinere arhiva private & upload pe vmchecker (dupa ce am actulizat in pack.sh si in upload.sh cele indicate)
+		./upload.sh

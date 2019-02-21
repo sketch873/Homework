@@ -1,0 +1,16 @@
+int a, b, t;
+a = 2;
+b = 3;
+if (!(a > b)) {
+	if (true) {
+		if (false) {
+			t = 0;
+		} else {
+			t = 1;
+		}
+	} else {
+		t = 0;
+	}
+} else {
+	t = 0;
+}

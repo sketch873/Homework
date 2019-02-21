@@ -1,0 +1,143 @@
+Andrei Martin
+322CC
+
+	!!	Frati  !!
+
+	Tip de date:
+		-> O structura care contine numarul de jocuri si 
+		benzi desenate castigate in urma concursului alaturi
+		de un boolean pentru a se specifica daca jocul a fost ales.
+
+	Complexitate:
+		Temporala:
+			
+			sort - O(N*logN)		|  => O(N*logN)
+			alegerea jocului O(n)*	|
+
+			* Daca toate concursurile au sumele dintre benzi desenate si jocuri egale
+			atunci i = 0, j va parcurge vectorul => O(n) si dupa se va alege un joc
+			pentru i(++) si un joc pentru j(--) pana cand sunt egale. => O(n).
+			* Daca toate concursurile au sumele diferite i va ramane egal cu j pentru
+			fiecare pas si i se va afla in intervalul [0,n), j = i, si se va face
+			mereu o alegere. => O(n) pentru i.
+
+		Spatiala:
+
+			O(N) - numarul de jocuri (structura obiect).
+
+	Idee de implementare:
+		- Algoritmul folosit este de tip Greedy deoarece pe oponenti 
+		ii intereseaza sa isi maximizeze rezultatele la finalul concursul ales de ei.
+		- Am sortat vectorul dupa preferintele lui Jon (jocuri) astfel:
+			> Cel mai important lucru pentru el e sa aiba un avantaj cat mai mare
+			(sa ia cat mai multe jocuri dar sa opreasca obtinerea unui numar cat
+			mai mare de benzi desenate pentru Sam) => prima prioritate o au
+			concursurile cu suma cea mai mare dintre jocuri si benzi desenate.
+			> In caz de egalitate, pe el il intereseaza sa isi maximizeze numarul
+			de obiecte preferate => a doua prioritate o au concursurile cu numarul
+			cel mai mare de jocuri obtinute la final.
+
+		- Dupa ce jocul este sortate incepe alegerea fratilor:
+		  	> Cum prima prioritate a lui Jon este valabila si pentru Sam, atunci
+			alegerile se vor face pe rand, de la i = 0 la i < n, pentru concursurile
+			cu sume diferite.
+			> A doua prioritate se schimba pentru Sam deoarece, pentru egalitatea sumelor
+			si sortarea dupa alegerile lui Jon, concursurile cu cele mai multe benzi desenate
+			sunt la final. => pentru un pas i se cauta un indice j pana la care
+			jocuri(i) + benzi(i) == jocuri(j) + benzi(j) si
+			jon += jocuri(i++), sam += benzi(j--).
+
+	!!  Ursi  !!
+	
+	Tip de date:
+		-> string pentru a salva mesajul
+		-> matrice pentru a stoca rezultatele dinamicii
+
+	Complexitate:
+		Temporala:
+			O(N * totalOchi), unde N - numarul de elemente din string
+								totalOchi - numarul de caractere ^ - N/2
+			=> complexitate finala O(N^2)
+
+		Spatiala:
+			O(N * totalOchi) => O(N^2)
+
+	Idee de implementare:
+		- Algoritmul este unul de dinamica. La fiecare pas calculez toate
+		  posibilitatile de a introduce caracterul. Astfel dinamica este de
+		  tip dp[i][j], unde i - pozitia curenta, j - numarul de fete
+		  deschise la acel pas. Valoarea stocata in dp[i][j] este
+		  reprezentat de numarul de moduri prin care, cu stringul dat pana
+		  la pasul i se poate realiza.
+
+		- Cazul de baza este pentru primul caracter (neaparat ^) este de a deschide prima fata.
+		- Daca pe pozitia i se afla ^ atunci se poate inchide sau deschide o fata =>
+		  	dp[i][j] = dp[i-1][j+1] * (j+1) + dp[i-1][j-1], adica poate inchide j+1 fete dar
+			daca deschide, se poate face intr-un singur mod => se face suma dintre cele 2 cazuri.
+		- Daca pe pozitia i se afla _ atunci pentru cazul cu 0 fete deschise primeste 0, in rest
+		  dp[i][j] = j * dp[i-1][j], adica se poate atasa oricarei fete deschise.
+
+	!!  Planificare  !!
+
+	Tip de date:
+		-> Vectori de durate si aparitii de tip int.
+		-> Vector de pierderi (v) de tip long long int.
+
+	Complexitate:
+		Temporala:
+			O(P^2) in cel mai defavorabil caz (daca toate probele incap intr-un concurs
+			vectorul este parcurs o data atat in fata cu i si o data in spate e la i la 0)
+
+		Spatiala:
+			O(P), dimensiunea fiecarui vector descris la 'tip de date'.
+
+	Idee de implementare:
+		- Algoritmul folosit este unul de dinamica deoarece se cauta optimul global pe baza
+		  alegerilor precedente.
+		- Vectorul de pierderi reprezinta pentru fiecare pas i suma pierderilor pana la luarea
+		  probei i in calcul.
+		- Dinamica :
+		  		v[i] = 0, i == 0
+				v[i] = min(v[j-1] + pierdere(j, i)), j < i, i != 0,
+				(in acest caz aparitii(i) = aparitii(j-1) + 1 )
+				Unde se incearca gasirea minimului curent dintre suma pierderilor precedente
+				si pierderea daca in concursul curent se afla, pe rand, proba curenta,
+				proba curenta si precedenta s.a.m.d. (cate incap intr-un concurs).
+
+		- In urma dinamicii se calculeaza optimul global pentru absolut toate probele (si cele
+		  din ultimul concurs) => trebuie gasit ultimul concurs (cel cu numarul de aparitii mai mic
+		  -- aparitii(i) = aparitii(p) - 1 --)
+
+
+
+	!!  Numaratoare  !!
+
+	Tip de date:
+		-> Vector de solutii.
+
+	Complexitate
+		Temporala:
+			O(N!) - 
+
+		Spatiala:
+			O(N) - dimensiunea vectorului.
+
+	Conditii de oprire:
+		- Daca a fost gasit si afisat elementul atunci nu se mai face parcurgere recursiva.
+		- Daca suma partiala este egala cu suma cautata si este elementul k se afiseaza
+		  si booleanul gasit = true => a fost gasit elementul.
+		- Elementele trebuie sa se afle in ordine descrescatoare.
+
+	Idee de implementare:
+		- Algoritmul nu este la fel de eficient ca o dinamica dar cu multe conditii suplimentare
+	  	scade drastic timpul de executie.
+		- Cum in suma nu exista elemente nenule si urmarind urmatoare exemplificare:
+		 	**  sum = a1 + a2 + a3  **
+			se stiu 2 lucruri, fiecare element trebuie sa fie minim 1 => pentru incercarea alegerii
+			elementului a1 se va incerca de la sum - 2 deoarece daca a1 = sum celelalte elemente sunt nule.
+			Pentru gasirea elementului a2 se va incerca de la sum - a1 - 2 + 1, unde a1 este suma partiala
+			pana la acel pas, 2 numarul de elemente (exceptand cel curent) si 1 cate elemente au fost alese
+			deja (stiind ca acela sigur nu este nul).
+			Analogia poate sa fie generalizata.
+
+

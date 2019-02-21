@@ -1,0 +1,42 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 3
+		<WhileNode> while
+			<BracketNode> ()
+				<AndNode> &&
+					<NotNode> !
+						<BracketNode> ()
+							<GreaterNode> >
+								<VariableNode> i
+								<IntNode> 7
+					<GreaterNode> >
+						<VariableNode> i
+						<IntNode> 2
+			<BlockNode> {}
+				<SequenceNode>
+					<AssignmentNode> =
+						<VariableNode> i
+						<PlusNode> +
+							<VariableNode> i
+							<IntNode> 3
+					<IfNode> if
+						<BracketNode> ()
+							<NotNode> !
+								<BracketNode> ()
+									<GreaterNode> >
+										<VariableNode> i
+										<IntNode> 5
+						<BlockNode> {}
+							<AssignmentNode> =
+								<VariableNode> i
+								<DivNode> /
+									<VariableNode> i
+									<IntNode> 0
+						<BlockNode> {}
+							<AssignmentNode> =
+								<VariableNode> i
+								<DivNode> /
+									<VariableNode> i
+									<IntNode> 1

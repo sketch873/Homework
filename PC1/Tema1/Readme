@@ -1,0 +1,8 @@
+Prezentarea implementarii:
+	-> Functii si variabile au nume sugestive taskului sau scopului de utilizare.
+	-> Citirea s-a facut printr-un sir de caractere, incrementand tipul (caracter, numar sau cuvant),
+	urmand modificarea acestuia in functie de tip si lipirea la un sir mare de caractere 'sir'.
+	-> Implementarea sirului a ajutat la impartirea lui si stabilirea complexitatii (task III).
+	-> Sortarea (task III) s-a facut dupa complexitate, o a doua sortare a elementelor consecutive
+	(cu aceeasi complexitate) fiind necesara pentru aranjarea in ordine lexicografica.
+	

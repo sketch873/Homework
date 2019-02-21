@@ -1,0 +1,25 @@
+	Martin Andrei-Costin
+	312CC
+
+	Tema 2 SD:
+
+		Implementarea algoritmului:
+		
+		->In main se verifica primul argument (-c1, -c2, -c3 sau -b)
+	si se apeleaza functia cu numele fisierelor de input si output.
+	
+		->Primele 2 taskuri se bazeaza pe structura de tip Nod deoarece
+	in ambele este nevoie de tabla de joc (in prima pentru afisare si in a
+	doua pentru determinarea nodului, T sau F).
+	
+		->Taskul 3 si bonusul se folosesc de structura mMax deoarece conteaza
+	doar valoare nodului.
+
+		Fisiere folosite:
+		->arbore.c contine functiile de baza pentru fiecare task.
+		
+		->aux1.c contine functiile specifice pentru prima structura
+	(taskurile I si II).
+
+		->aux2.c contine functiile specifice pentru a doua structura
+	(taskul III si bonus).

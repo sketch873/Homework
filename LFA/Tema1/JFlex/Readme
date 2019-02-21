@@ -1,0 +1,34 @@
+Martin Andrei - Costin
+336CA
+
+    Implementare:
+        - E naspa ce am facut (mi-am dat seama dupa ce am rezolvat bonusul :(  )
+        - Pentru tipuri de noduri care se executa mai tarziu am pus un reminder pe stiva
+        pentru a sti cand sa execut ce operatie. (Ex. stiva: [variable Sum variable] -> face nod de tip suma intre doua variabile)
+
+        - Toate clasele sunt de tip Expression:
+            * show() -> afisarea arborelui
+            * interpret() -> interpretarea arborelui
+            * test() -> existenta variabilelor(la folosire)
+    Fisiere:
+        *Hello.flex*
+        - Instructiunile de flex pentru realizarea parserului.
+
+        *Parser.java*
+        - Contine clasa Parser, cea care se ocupa de afisare.
+
+        *types.java*
+        - Contine clasele ale calor instante fac parte din arborele sintactic.
+        - Fiecare clasa are un numar de fii, specificat in enunt, pentru o
+        parcurgere recursiva, spre frunze.
+
+        *aux.java*
+        - Contine clase auxiliare, cu rolul de delimitatori pentru stiva.
+        Exemplu stiva:
+            Block
+            Block
+            Bracket
+            If
+        => If nu este inca un nod din arbore, ci o eticheta ca acolo incepe.
+        Urmeaza realizarea unui nod IfN care contine 2 Block-uri si un Bracket,
+        alaturi de eliminarea obiectului If de pe stiva.

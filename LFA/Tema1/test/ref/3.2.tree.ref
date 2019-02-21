@@ -1,0 +1,18 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 100
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> j
+				<IntNode> 10
+			<AssignmentNode> =
+				<VariableNode> k
+				<PlusNode> +
+					<DivNode> /
+						<VariableNode> j
+						<IntNode> 2
+					<DivNode> /
+						<IntNode> 6
+						<IntNode> 2

@@ -1,0 +1,28 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> i
+			<IntNode> 0
+		<SequenceNode>
+			<AssignmentNode> =
+				<VariableNode> j
+				<IntNode> 1
+			<WhileNode> while
+				<BracketNode> ()
+					<NotNode> !
+						<BracketNode> ()
+							<GreaterNode> >
+								<VariableNode> i
+								<IntNode> 6
+				<BlockNode> {}
+					<SequenceNode>
+						<AssignmentNode> =
+							<VariableNode> i
+							<PlusNode> +
+								<VariableNode> i
+								<VariableNode> j
+						<AssignmentNode> =
+							<VariableNode> j
+							<PlusNode> +
+								<VariableNode> j
+								<IntNode> 1

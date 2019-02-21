@@ -1,0 +1,10 @@
+<MainNode>
+	<SequenceNode>
+		<AssignmentNode> =
+			<VariableNode> a
+			<IntNode> 2
+		<IfNode> if
+			<BracketNode> ()
+				<BoolNode> true
+			<BlockNode> {}
+			<BlockNode> {}

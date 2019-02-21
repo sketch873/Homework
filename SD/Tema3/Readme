@@ -1,0 +1,57 @@
+	Martin Andrei-Costin
+	312CC
+
+	Structura Graf:
+		->int **matCost - matricea costurilor dintre doua noduri
+		->int **matDrum - matricea drumului de cost minim dintre oricare
+						doua noduri
+		->int *tipuri - tipul fiecarui nod din graf
+		->int noduri - numarul de noduri
+		->int start - nodul de start al dronei (ferma)
+		->int transporturi - numarul de comenzi care trebuiesc procesate
+		->int *traseu[2] - format din 2 vectori care au urmatoarea semnificatie
+						pentru pozitia i:
+							1. [0][i] reprezinta tipul produsului pentru livrarea i
+							2. [1][i] nodul unde trebuie transportat produsul
+							pentru livrarea i
+
+	Functii de baza:
+		->void task1(FILE *out, Graf final);
+		->void task2(FILE *out, Graf final);
+		->void task3(FILE *out, Graf final);
+
+	Functii auxiliare:
+		->Graf initGraf(int varfuri);
+		->Graf insertEdge(Graf x, int a, int b, int cost);
+		->Graf citire(FILE *in, int task);
+		->Graf FloydWarshall(Graf g);
+		->void afisareDrum(Graf g, int x, int y, FILE *out);
+		->Graf eliberare(Graf final);
+
+		->void bk(int k, Graf final, int *v, int *ordine);
+		->int verificare(int *v, int k);
+		->void modificare(Graf final, int *v, int *ordine);
+		->int calLungime(Graf final, int *v);
+
+	TASK I:
+		-> Pentru inceput, drona pleaca din nodul ferma si se duce spre primul client.
+		-> Pentru fiecare livrare cauta nodul de tipul 1 si afiseaza drumul pana la ferma
+		si pana la urmatoarea livrare.
+		-> La fiecare pas lungimea se mareste cu drumul de la un nod pana la ferma sau
+		de la ferma pana la un nod.
+		-> Afisarea drumului se face secvential, urmand ca la final sa se stearga ultimul spatiu
+		si sa se afiseze si lungimea.
+
+	TASK II:
+		-> Spre deosebire de primul task, drona cauta cea mai apropiata ferma (distanta dintre
+		nodul in care se afla, unde a realizat ultima livrare, pana la o ferma si de la acea
+		ferma pana la nodul unde trebuie sa livreze este minima)
+
+	TASK III:
+		-> Implementarea aproximativa ca la taskurile I si II doar ca tipul si fermei nu
+		mai este neaparat 1.
+		-> Pentru determinarea ordinii livrarilor am plecat cu vectorul ordine, la inceput
+		cu ordinea citirii lor, care pe parcurs o sa fie modificat daca exista un drum mai eficient.
+		-> Determinarea eficientei se face prin backtracking, generand toate cazurile posibile
+		si simuland lungimea traseului (functia calLungime).
+

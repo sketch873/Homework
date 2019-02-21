@@ -1,0 +1,58 @@
+Andrei - Costin Martin
+322CC
+
+	OBS: E posibil ca numarul de linii afisate dintr-o sectiune sa fie
+		mai mic fata de numarul de raspunsuri din acea sectiune deoarece
+		po exista raspunsuri diferite de cele data in enunt (AAAA)
+	Headere:
+		- struct.h -> tine structurile indicate in enuntul temei
+		- base.h -> tine toate bibliotecile necesare, macro-urile utile
+		  			si definitiile de functii din modulele auxiliare
+
+	Fisiere si functii:
+		- auxiliare.c
+		  	* serversOfDns - parseaza 'dns_servers.conf', stocand in argument
+							serverele de DNS date si intoarce numarul lor
+			
+			* makeHeader - intoarce o structura de tip HEADER, unde ID este pidul
+			
+			* makeQuestion - intoarce o structura de tip QUESTION cu tipul
+							si QNAME oferite
+			
+			* ChangetoDnsNameFormat - transforma un mesaj in formatul DNS
+			
+			* ChangetoHumanNameFormat - transforma un mesaj din formatul DNS
+			
+			* makeMessage - unifica HEADER si QUESTION formand un mesaj de trimis
+			
+			* remakeHeader - extrage HEADER-ul din mesajul primit pentru a identifica
+							numarul de raspunsuri ANSWER, AUTHORITY si ADDITIONAL
+			
+			* makeName - dandu-se un pointer (0xc0) ca indice, decomprima mesajul
+					   - usage == 1 semnifica faptul ca se primesc mai multe nume
+						 (SOA cu PriName si AuthMailbox)
+			
+			* makeResponse - extrage din mesaj toate raspunsurile
+		
+		- print.c
+		  	* printMessageLog - afiseaza in 'message.log' mesajul trimis catre server
+
+			* printType - afiseaza in 'dns.log' un raspuns in functie de tipul lui
+
+			* printResponse - parcurge toate raspunsurile si le afiseaza la una dintre
+							categoriile ANSWER, AUTHORITY sau ADDITIONAL
+
+	Idee de implementare:
+		* Transmiterea se face printr-un socket UDP.
+		* Fac verificarile de baza: argumente, existenta servere DNS in 'dns_servers.conf',
+			deschidere corecta a socketului.
+		* Daca primul argument este adresa IP atunci adaug '.in-addr.arpa' in coada lui.
+		* Realizez campul HEADER.
+		* Pentru fiecare tip de QUERY (argumentul 2) realizez campul QUESTION.
+		* Afisez mesajul de transmit in 'message.log'
+		* Iau toate serverele DNS oferite si verific folosind select (cu SECS secunde
+			de timeout) care ofera un raspuns la cererea trimisa.
+		* Pentru cel care ofera raspuns, parsez noul HEADER pentru a determina numarul
+			de raspunsuri si dupa parsez raspunsurile.
+		* Dupa parsare urmeaza afisarea raspunsurilor si sfarsitul executiei.
+		

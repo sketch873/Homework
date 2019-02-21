@@ -1,0 +1,16 @@
+int i, j;
+i = 0;
+j = 12;
+while (!(i > 4) && !(i > i)) {
+	while (!(5 > j)) {
+		if (false && true) {
+			while (!(i > j)) {
+				j = j + 1;
+			}
+		} else {
+			i = 4;
+			j = 3;
+		}
+	}
+	i = i + 1;
+}
